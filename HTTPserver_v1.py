@@ -13,10 +13,9 @@ class HttpProcessor(BaseHTTPRequestHandler):
         self.send_header('content-type', 'text/html')
         self.end_headers()
         global calls
-        calls +=1
         bitecode = str(calls).encode()
         self.wfile.write(b"<body><p>%s</p></body>" % bitecode)
-
+        calls += 1
 
 serv = HTTPServer(("localhost", 80), HttpProcessor)
 serv.serve_forever()
